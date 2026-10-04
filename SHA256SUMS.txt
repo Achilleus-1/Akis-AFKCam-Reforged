@@ -1,2 +1,0 @@
-a15bfe30098106587c710907c2bf37eb8e6d31bcd39b878ba4f89c4f64d36150  aki-afk-cam-reforged-1.21.1-2.3.1-neoforge.3-sources.jar
-493f9e0920f489745e4a7cbea84386f738a2078ade1de748707c34dce409c280  aki-afk-cam-reforged-1.21.1-2.3.1-neoforge.3.jar
