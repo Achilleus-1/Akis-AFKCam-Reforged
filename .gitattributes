@@ -8,3 +8,9 @@ gradlew text eol=lf
 *.png binary
 *.ogg binary
 *.jar binary
+
+# Shell entry points must remain usable on Linux.
+*.sh text eol=lf
+*.bash text eol=lf
+gradlew text eol=lf
+*.bat text eol=crlf
