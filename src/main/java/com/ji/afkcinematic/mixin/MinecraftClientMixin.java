@@ -1,0 +1,32 @@
+package com.ji.afkcinematic.mixin;
+
+import com.ji.afkcinematic.afk.AFKDetector;
+import com.ji.afkcinematic.cinematic.CinematicManager;
+import com.ji.afkcinematic.cinematic.CinematicState;
+import com.ji.afkcinematic.config.ConfigManager;
+import com.ji.afkcinematic.input.CinematicInputPolicy;
+import net.minecraft.client.Minecraft;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+@Mixin(value={Minecraft.class})
+public class MinecraftClientMixin {
+    @Inject(method={"startAttack"}, at={@At(value="HEAD")}, require=1)
+    private void onAttack(CallbackInfoReturnable<Boolean> cir) {
+        MinecraftClientMixin.registerGameplayAction();
+    }
+
+    @Inject(method={"startUseItem"}, at={@At(value="HEAD")}, require=1)
+    private void onItemUse(CallbackInfo ci) {
+        MinecraftClientMixin.registerGameplayAction();
+    }
+
+    private static void registerGameplayAction() {
+        if (CinematicInputPolicy.shouldRegisterActivity(CinematicManager.getState() == CinematicState.CINEMATIC_ACTIVE, ConfigManager.getConfig().persistentMode, false, CinematicInputPolicy.Event.GAMEPLAY_ACTION)) {
+            AFKDetector.registerActivity();
+        }
+    }
+}

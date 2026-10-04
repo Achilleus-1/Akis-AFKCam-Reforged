@@ -1,0 +1,52 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+version = '2.3.1-neoforge.2'
+group = 'io.github.achilleus1'
+base { archivesName = 'aki-afk-cam-reforged-1.21.1' }
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
+sourceSets {
+    smokeHost {
+        runtimeClasspath = sourceSets.main.runtimeClasspath - sourceSets.main.output
+    }
+}
+def copySmokeJar = tasks.register('copySmokeJar', Sync) {
+    from tasks.named('jar')
+    into layout.projectDirectory.dir('run-smoke/mods')
+}
+neoForge {
+    version = '21.1.255'
+    runs {
+        client {
+            client()
+            if (project.hasProperty('smokeTest')) {
+                gameDirectory = file('run-smoke')
+                systemProperty 'ji.afkcinematic.runtimeTest', 'true'
+                systemProperty 'ji.afkcinematic.autoSmokeTest', 'true'
+                systemProperty 'mixin.debug.verbose', 'true'
+            }
+        }
+        packagedSmoke {
+            client()
+            sourceSet = sourceSets.smokeHost
+            loadedMods = []
+            gameDirectory = file('run-smoke')
+            taskBefore copySmokeJar
+            systemProperty 'ji.afkcinematic.runtimeTest', 'true'
+            systemProperty 'ji.afkcinematic.autoSmokeTest', 'true'
+            systemProperty 'ji.afkcinematic.testLocalMusic', 'true'
+            systemProperty 'mixin.debug.verbose', 'true'
+        }
+    }
+    mods { ji_afk_cinematic { sourceSet(sourceSets.main) } }
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+
+jar {
+    from('LICENSE')
+    manifest.attributes('Implementation-Title': 'Aki AFK Cam Reforged', 'Implementation-Version': project.version)
+}
