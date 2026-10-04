@@ -5,13 +5,16 @@ issueTrackerURL="https://github.com/Achilleus-1/Akis-AFKCam-Reforged/issues"
 
 [[mods]]
 modId="ji_afk_cinematic"
-version="2.3.1-neoforge.2"
+version="2.3.1-neoforge.3"
 displayName="Aki AFK Cam Reforged"
-displayURL="https://github.com/Achilleus-1/Akis-AFKCam-Reforged"
-logoFile="assets/ji-afk-cinematic/icon.png"
+displayURL="https://linktr.ee/achilleus_"
+logoFile="assets/achilleus/achilleus-logo-white.png"
 authors="Achilleus (Achilleus-1), NeoForge port and maintenance"
 credits="jiory_ (Jiory), original Ji AFK Cinematic"
-description='''Cinematic camera, HUD transitions, and music while AFK. NeoForge 1.21.1 port and rebranding by Achilleus, based on Ji AFK Cinematic by jiory_.'''
+description='''Product of Achilleus.
+https://linktr.ee/achilleus_
+
+Cinematic camera, HUD transitions, and music while AFK. NeoForge 1.21.1 port and rebranding by Achilleus, based on Ji AFK Cinematic by jiory_.'''
 
 [[dependencies.ji_afk_cinematic]]
 modId="neoforge"
