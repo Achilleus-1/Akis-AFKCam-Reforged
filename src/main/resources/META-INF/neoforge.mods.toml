@@ -10,11 +10,11 @@ displayName="${mod_name}"
 displayURL="https://linktr.ee/achilleus_"
 logoFile="assets/achilleus/achilleus-logo-white.png"
 authors="${mod_authors}"
-credits="jiory_ (Jiory), original Ji AFK Cinematic"
+credits="Ported from Ji AFK Cinematic by jiory_ (Jiory)."
 description='''Product of Achilleus.
 https://linktr.ee/achilleus_
 
-Cinematic camera, HUD transitions, and music while AFK. NeoForge 1.21.1 port and rebranding by Achilleus, based on Ji AFK Cinematic by jiory_.'''
+Cinematic camera, HUD transitions, and music while AFK. Created and maintained by Achilleus for NeoForge 1.21.1.'''
 
 [[dependencies.${mod_id}]]
 modId="neoforge"
