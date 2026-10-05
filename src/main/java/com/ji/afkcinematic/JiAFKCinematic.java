@@ -32,7 +32,7 @@ public class JiAFKCinematic {
         modBus.addListener((FMLClientSetupEvent event) -> event.enqueueWork(this::onInitializeClient));
     }
     public static final String MOD_ID = "ji-afk-cinematic";
-    public static final String MOD_NAME = "Aki AFK Cam Reforged";
+    public static final String MOD_NAME = "Aki's AFK Cam Reforged";
     public static final Logger LOGGER = LoggerFactory.getLogger((String)"ji-afk-cinematic");
     private static final int MIXIN_DIAGNOSTIC_DELAY_TICKS = 200;
     private static final Set<String> CRITICAL_MIXINS = Set.of("CameraMixin", "InGameHudMixin", "MouseMixin", "MinecraftClientMixin");
