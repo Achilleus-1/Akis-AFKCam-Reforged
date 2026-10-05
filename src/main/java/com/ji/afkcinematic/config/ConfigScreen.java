@@ -376,7 +376,7 @@ extends Screen {
         }
         int titleY = this.height < 360 ? 17 : 55;
         context.drawCenteredString(this.font, (Component)Component.literal((String)"\u00a76\u00a7lAki AFK Cam Reforged"), this.width / 2, titleY, -1);
-        context.drawCenteredString(this.font, (Component)Component.literal((String)"\u00a75Product of Achilleus | Original: jiory_"), this.width / 2, titleY + 10, -1);
+        context.drawCenteredString(this.font, (Component)Component.literal((String)"\u00a75Product of Achilleus"), this.width / 2, titleY + 10, -1);
     }
 
     public void onClose() {
