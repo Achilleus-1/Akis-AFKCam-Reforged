@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 public class JiAFKCinematic {
     public JiAFKCinematic(IEventBus modBus, ModContainer container) {
         ClientEvents.install(modBus);
+        com.ji.afkcinematic.input.ModKeyMappings.install(modBus);
         RuntimeProbe.registerTestKeybinding(modBus);
         container.registerExtensionPoint(IConfigScreenFactory.class, (mc, parent) -> new ConfigScreen(parent));
         modBus.addListener((FMLClientSetupEvent event) -> event.enqueueWork(this::onInitializeClient));
@@ -34,7 +35,7 @@ public class JiAFKCinematic {
     public static final String MOD_NAME = "Aki AFK Cam Reforged";
     public static final Logger LOGGER = LoggerFactory.getLogger((String)"ji-afk-cinematic");
     private static final int MIXIN_DIAGNOSTIC_DELAY_TICKS = 200;
-    private static final Set<String> CRITICAL_MIXINS = Set.of("CameraMixin", "InGameHudMixin", "KeyboardMixin", "MouseMixin", "MinecraftClientMixin");
+    private static final Set<String> CRITICAL_MIXINS = Set.of("CameraMixin", "InGameHudMixin", "MouseMixin", "MinecraftClientMixin");
     private static int mixinDiagnosticTicks;
     private static boolean mixinDiagnosticComplete;
 
@@ -44,6 +45,7 @@ public class JiAFKCinematic {
         GameplayActivityMonitor.init();
         AFKDetector.init();
         CinematicManager.init();
+        RuntimeProbe.captureOptionsBeforeMusicSetup(net.minecraft.client.Minecraft.getInstance());
         CinematicMusicManager.init();
         LetterboxRenderer.init();
         RuntimeProbe.initIfEnabled();

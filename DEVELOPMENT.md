@@ -17,13 +17,19 @@ one valid `.ogg` file in `run-smoke/config/ji-afk-cinematic/music/`. In
 
 ```text
 key_key.ji_afk_cinematic.persistence_probe:key.keyboard.semicolon
+key_key.ji_afk_cinematic.open_settings:key.keyboard.f10
+key_key.ji_afk_cinematic.toggle_enabled:key.keyboard.f8
+key_key.ji_afk_cinematic.toggle_cinematic:key.keyboard.f9
 ```
 
 Run `./gradlew runPackagedSmoke -PtestKeybindings` (Windows:
 `.\gradlew.bat runPackagedSmoke -PtestKeybindings`). The probe registers a mod
 binding whose default is H and verifies that its saved semicolon binding survives
 startup and a local music resource reload, both in memory and in `options.txt`.
-It also checks that the generated music pack selection is persisted. Success logs
+It also checks that all camera actions start unbound by default, saved assignments
+load normally, music setup/rebuild leaves the options file unchanged, and the
+music pack is selected in memory. The camera smoke test checks normal movement
+during persistent cinematics and all three registered actions. Success logs
 `JI_KEYBINDING_PERSISTENCE_PASS` and `JI_RUNTIME_TEST_PASS`.
 
 Test first with `resourcePacks:[]` in the isolated options file, then rerun without
