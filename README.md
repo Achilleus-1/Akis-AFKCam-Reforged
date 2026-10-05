@@ -6,7 +6,9 @@ Client-only AFK cinematic camera. Settings: F7 + H. Toggle: Ctrl + H. Start/stop
 
 ## Installation
 
-For **Minecraft 1.21.1**, **NeoForge 21.1.255**, and **Java 21**. Download `aki-afk-cam-reforged-1.21.1-2.3.1-neoforge.3.jar` from [Releases](https://github.com/Achilleus-1/Akis-AFKCam-Reforged/releases/latest) and place it in your `mods` folder. Remove older copies first.
+For **Minecraft 1.21.1**, **NeoForge 21.1.255**, and **Java 21**. Download `aki-afk-cam-reforged-1.21.1-2.3.1-neoforge.4.jar` from [Releases](https://github.com/Achilleus-1/Akis-AFKCam-Reforged/releases/latest) and place it in your `mods` folder. Remove older copies first.
+
+Version `2.3.1-neoforge.4` fixes custom mod keybindings being reset at startup: local music-pack selection is saved only after NeoForge restores saved controls and resource loading finishes. Controls already reset by older versions need to be restored once after installing the fix.
 
 ## Development
 

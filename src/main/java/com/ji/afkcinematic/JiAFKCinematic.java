@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 public class JiAFKCinematic {
     public JiAFKCinematic(IEventBus modBus, ModContainer container) {
         ClientEvents.install(modBus);
+        RuntimeProbe.registerTestKeybinding(modBus);
         container.registerExtensionPoint(IConfigScreenFactory.class, (mc, parent) -> new ConfigScreen(parent));
         modBus.addListener((FMLClientSetupEvent event) -> event.enqueueWork(this::onInitializeClient));
     }

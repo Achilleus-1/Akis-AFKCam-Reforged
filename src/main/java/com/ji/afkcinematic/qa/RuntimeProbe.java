@@ -28,6 +28,35 @@ public final class RuntimeProbe {
     private static int frameTicks;
     private static net.minecraft.client.CameraType previousCamera;
     private static boolean previousHud;
+    private static net.minecraft.client.KeyMapping testKeybinding;
+
+    public static void registerTestKeybinding(net.neoforged.bus.api.IEventBus modBus) {
+        if (!Boolean.getBoolean(ENABLE_PROPERTY) || !Boolean.getBoolean("ji.afkcinematic.testKeybindings")) return;
+        modBus.addListener((net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent event) -> {
+            testKeybinding = new net.minecraft.client.KeyMapping("key.ji_afk_cinematic.persistence_probe",
+                com.mojang.blaze3d.platform.InputConstants.Type.KEYSYM, org.lwjgl.glfw.GLFW.GLFW_KEY_H,
+                "key.categories.misc");
+            event.register(testKeybinding);
+        });
+    }
+
+    private static void checkSavedKeybinding(Minecraft client) {
+        if (!Boolean.getBoolean("ji.afkcinematic.testKeybindings")) return;
+        RuntimeProbe.check(testKeybinding != null, "test mod keybinding was not registered");
+        RuntimeProbe.check(testKeybinding.getKey().getName().equals("key.keyboard.semicolon"),
+            "custom mod keybinding was reset to " + testKeybinding.getKey().getName());
+        try {
+            List<String> savedOptions = java.nio.file.Files.readAllLines(client.gameDirectory.toPath().resolve("options.txt"));
+            RuntimeProbe.check(savedOptions
+                .contains("key_key.ji_afk_cinematic.persistence_probe:key.keyboard.semicolon"),
+                "custom mod keybinding was overwritten in options.txt");
+            RuntimeProbe.check(savedOptions.stream().anyMatch(line -> line.startsWith("resourcePacks:")
+                && line.contains("file/ji-afk-cinematic-local")), "local music pack selection was not saved");
+        } catch (java.io.IOException e) {
+            throw new IllegalStateException("JI_RUNTIME_TEST_FAIL: could not read saved keybinding", e);
+        }
+        JiAFKCinematic.LOGGER.info("JI_KEYBINDING_PERSISTENCE_PASS");
+    }
 
     private RuntimeProbe() {
     }
@@ -50,6 +79,7 @@ public final class RuntimeProbe {
         if (client.player == null || client.level == null) {
             if (Boolean.getBoolean("ji.afkcinematic.autoSmokeTest") && !worldRequested
                     && client.screen instanceof net.minecraft.client.gui.screens.TitleScreen && client.getOverlay() == null) {
+                RuntimeProbe.checkSavedKeybinding(client);
                 if (Boolean.getBoolean("ji.afkcinematic.testLocalMusic") && !resourcesRequested) {
                     resourcesRequested = true;
                     RuntimeProbe.check(com.ji.afkcinematic.music.LocalMusicPackManager.rebuildAndReload() == 1,
@@ -162,6 +192,7 @@ public final class RuntimeProbe {
             RuntimeProbe.check(client.options.getCameraType() == previousCamera, "camera perspective was not restored");
             RuntimeProbe.check(client.options.hideGui == previousHud, "HUD option was not restored");
             CinematicManager.fullTeardown();
+            RuntimeProbe.checkSavedKeybinding(client);
             phase = 5;
             JiAFKCinematic.LOGGER.info(PASS_MARKER);
             if (Boolean.getBoolean("ji.afkcinematic.autoSmokeTest")) client.stop();

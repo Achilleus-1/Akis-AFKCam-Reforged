@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ji.afkcinematic.JiAFKCinematic;
 import com.ji.afkcinematic.music.CinematicMusicManager;
+import com.ji.afkcinematic.platform.ClientEvents;
 import java.awt.Desktop;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -24,12 +25,14 @@ import java.util.stream.Stream;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.fml.ModList;
 import net.minecraft.client.Minecraft;
+import net.neoforged.neoforge.client.loading.ClientModLoader;
 
 public final class LocalMusicPackManager {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final String PACK_ID = "file/ji-afk-cinematic-local";
     private static final String NAMESPACE = "ji_afk_cinematic_local";
     private static final String FINGERPRINT_FILE = ".ji-afk-source.sha256";
+    private static boolean optionsSavePending;
 
     private LocalMusicPackManager() {
     }
@@ -39,7 +42,19 @@ public final class LocalMusicPackManager {
     }
 
     public static void initialize() {
+        ClientEvents.onTick(LocalMusicPackManager::saveOptionsAfterLoading);
         LocalMusicPackManager.rebuild(false);
+    }
+
+    private static void saveOptionsAfterLoading(Minecraft client) {
+        // NeoForge queues options.load(true) after setup to restore mod keybindings.
+        // Wait for a client tick with the loading/reload overlay gone so that queued
+        // reload has completed before persisting the selected music pack.
+        if (optionsSavePending && !ClientModLoader.isLoading() && client.getOverlay() == null
+                && client.options != null) {
+            client.options.save();
+            optionsSavePending = false;
+        }
     }
 
     public static void openMusicFolder() {
@@ -114,7 +129,7 @@ public final class LocalMusicPackManager {
                     client.options.resourcePacks.add(PACK_ID);
                 }
                 client.options.incompatibleResourcePacks.remove(PACK_ID);
-                client.options.save();
+                optionsSavePending = true;
                 client.getResourcePackRepository().reload();
                 client.getResourcePackRepository().setSelected((Collection)client.options.resourcePacks);
                 CinematicMusicManager.onThirdPartyMusicReloaded();
