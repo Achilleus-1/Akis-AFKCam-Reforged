@@ -1,4 +1,10 @@
 {
+  "key.categories.ji_afk_cinematic": "Aki AFK Cam Reforged",
+  "key.ji_afk_cinematic.open_settings": "Open Camera Settings",
+  "key.ji_afk_cinematic.toggle_enabled": "Enable / Disable AFK Camera",
+  "key.ji_afk_cinematic.toggle_cinematic": "Start / Stop Cinematic",
+  "config.ji_afkcinematic.controls": "Key Bindings...",
+  "config.ji_afkcinematic.tooltip.controls": "Assign camera actions in Minecraft's Controls menu. All actions start unbound.",
   "config.ji_afkcinematic.title": "Aki AFK Cam Reforged — Settings",
   "config.ji_afkcinematic.title_formatted": "§6§lAki AFK Cam Reforged §7— §fSettings",
   "config.ji_afkcinematic.shot_duration": "Shot Duration: %ss",

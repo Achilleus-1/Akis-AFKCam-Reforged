@@ -78,10 +78,10 @@ public class ConfigManager {
     }
 
     private static void migrateIfNeeded() {
-        if (ConfigManager.config.configVersion >= 8) {
+        if (ConfigManager.config.configVersion >= ModConfig.CURRENT_CONFIG_VERSION) {
             return;
         }
-        JiAFKCinematic.LOGGER.info("Migrating config v{} -> v{}", (Object)ConfigManager.config.configVersion, (Object)8);
+        JiAFKCinematic.LOGGER.info("Migrating config v{} -> v{}", (Object)ConfigManager.config.configVersion, (Object)ModConfig.CURRENT_CONFIG_VERSION);
         if (ConfigManager.config.configVersion < 4) {
             if (ConfigManager.config.characterShotPercentage == 50) {
                 ConfigManager.config.characterShotPercentage = 30;
@@ -101,23 +101,13 @@ public class ConfigManager {
             if (ConfigManager.config.chatVisibility == null) {
                 ConfigManager.config.chatVisibility = CinematicChatVisibility.VISIBLE;
             }
-            if (ConfigManager.config.toggleKey1 == 341 && ConfigManager.config.toggleKey2 == 72) {
-                ConfigManager.config.toggleKey1 = 296;
-                ConfigManager.config.toggleKey2 = 73;
-            }
         }
         if (ConfigManager.config.configVersion < 8) {
-            if (ConfigManager.config.toggleKey1 == 296 && ConfigManager.config.toggleKey2 == 73) {
-                ConfigManager.config.toggleKey1 = 341;
-                ConfigManager.config.toggleKey2 = 72;
-            }
-            ConfigManager.config.immediateKey1 = 296;
-            ConfigManager.config.immediateKey2 = 73;
             if (ConfigManager.config.musicMode == null) {
                 ConfigManager.config.musicMode = ConfigManager.config.thirdPartyMusic ? MusicMode.MIXED : MusicMode.VANILLA;
             }
         }
-        ConfigManager.config.configVersion = 8;
+        ConfigManager.config.configVersion = ModConfig.CURRENT_CONFIG_VERSION;
         ConfigManager.saveConfig();
     }
 

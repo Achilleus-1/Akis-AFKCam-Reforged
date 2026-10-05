@@ -6,7 +6,6 @@ import com.ji.afkcinematic.cinematic.CinematicState;
 import com.ji.afkcinematic.config.ConfigManager;
 import com.ji.afkcinematic.config.ConfigScreen;
 import com.ji.afkcinematic.input.CinematicInputPolicy;
-import com.ji.afkcinematic.input.KeySequenceTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.MouseHandler;
 import net.minecraft.client.gui.screens.ChatScreen;
@@ -33,7 +32,6 @@ public class MouseMixin {
         if (action == 1) {
             this.registerMouseActivity(CinematicInputPolicy.Event.GAMEPLAY_ACTION);
         }
-        KeySequenceTracker.resetAll();
     }
 
     @Inject(method={"onScroll"}, at={@At(value="HEAD")}, require=1)
