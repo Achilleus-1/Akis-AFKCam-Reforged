@@ -4,6 +4,10 @@
 
 Client-only AFK cinematic camera. Assign **Open Camera Settings**, **Enable / Disable AFK Camera**, and **Start / Stop Cinematic** in **Options → Controls → Key Binds → Aki's AFK Cam Reforged**. All three start unbound. Settings are also available through the mod's configuration button in the Mods screen.
 
+## Demo
+
+![Gameplay demo of Aki's AFK Cam Reforged](docs/demo.gif)
+
 ## Installation
 
 For **Minecraft 1.21.1**, **NeoForge 21.1.255**, and **Java 21**. Download `akis-afk-cam-reforged-1.21.1-2.3.1-neoforge.7.jar` from [Releases](https://github.com/Achilleus-1/Akis-AFKCam-Reforged/releases/latest) and place it in your `mods` folder. Remove older copies first.
