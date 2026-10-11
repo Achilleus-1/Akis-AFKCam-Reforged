@@ -10,7 +10,7 @@ Unofficial Minecraft mod; not approved by or affiliated with Mojang or Microsoft
 
 Client-only AFK cinematic camera. Assign **Open Camera Settings**, **Enable / Disable AFK Camera**, and **Start / Stop Cinematic** in **Options → Controls → Key Binds → Aki's AFK Cam Reforged**. All three start unbound. Settings are also available through the mod's configuration button in the Mods screen.
 
-**Derived from [Ji AFK Cinematic](https://github.com/jioryII/Ji-AFK-Cinematic) by [Jiory](https://github.com/jioryII).** This free, open-source NeoForge 1.21.1 interpretation is maintained by Achilleus with Jiory's permission.
+**Based on [Ji AFK Cinematic](https://github.com/jioryII/Ji-AFK-Cinematic) by [Jiory](https://github.com/jioryII).** Free, open-source NeoForge 1.21.1 port by Achilleus, with permission.
 
 ## Demo
 
@@ -18,7 +18,7 @@ Client-only AFK cinematic camera. Assign **Open Camera Settings**, **Enable / Di
 
 ## Installation
 
-For **Minecraft 1.21.1**, **NeoForge 21.1.255**, and **Java 21**. Download `akis-afk-cam-reforged-1.21.1-2.3.1-neoforge.10.jar` from [Releases](https://github.com/Achilleus-1/Akis-AFKCam-Reforged/releases/latest) and place it in your `mods` folder. Remove older copies first.
+For **Minecraft 1.21.1**, **NeoForge 21.1.255**, and **Java 21**. Download `akis-afk-cam-reforged-1.21.1-2.3.1-neoforge.11.jar` from [Releases](https://github.com/Achilleus-1/Akis-AFKCam-Reforged/releases/latest) and place it in your `mods` folder. Remove older copies first.
 
 The camera uses standard NeoForge keybindings and removes the custom key-sequence/rebinding system, global options saves, and persistent-mode movement input clearing. Legacy shortcuts are ignored; assign the new actions in Controls. Music-pack selection is applied in memory for each session without forcing an options save. Controls already reset by older versions need to be restored once.
 
@@ -36,14 +36,12 @@ See [DEVELOPMENT.md](DEVELOPMENT.md) for reproducible checks and known archival 
 
 [Branding assets](BRANDING.md) include the mod icon, original cover, and GitHub social preview.
 
-## Attribution
+## License and credits
 
-Unofficial NeoForge port of [Ji AFK Cinematic](https://github.com/jioryII/Ji-AFK-Cinematic) by **jiory_ (Jiory)**. Port development and maintenance by **Achilleus (Achilleus-1)**. Original creators retain rights to their contributions.
-
-The mod code is licensed under **MIT**. Full license notices are retained in [LICENSE](LICENSE) and packaged resources. See [LEGAL.md](LEGAL.md) for upstream revisions, asset scope, and redistribution requirements.
+**MIT** — see [LICENSE](LICENSE) and [LEGAL.md](LEGAL.md).
 
 ## Port permission
 
-Jiory approved this free, open-source NeoForge 1.21.1 port on October 11, 2026. Original-creator credit and original-project links are retained above as proposed in the request. This permission supports this port; it does not replace the applicable upstream license notices.
+Jiory approved this port on October 11, 2026:
 
 ![Jiory granting permission for the NeoForge 1.21.1 port](docs/AFKCamPermission.png)
