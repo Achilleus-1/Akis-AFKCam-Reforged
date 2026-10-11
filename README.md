@@ -10,7 +10,7 @@ Unofficial Minecraft mod; not approved by or affiliated with Mojang or Microsoft
 
 Client-only AFK cinematic camera. Assign **Open Camera Settings**, **Enable / Disable AFK Camera**, and **Start / Stop Cinematic** in **Options → Controls → Key Binds → Aki's AFK Cam Reforged**. All three start unbound. Settings are also available through the mod's configuration button in the Mods screen.
 
-**[Jiory](https://github.com/jioryII) is the derived creator, developer of [Ji AFK Cinematic](https://github.com/jioryII/Ji-AFK-Cinematic).** This free, open-source NeoForge 1.21.1 Interpretation is maintained by Achilleus with Jiory's permission.
+**Derived from [Ji AFK Cinematic](https://github.com/jioryII/Ji-AFK-Cinematic) by [Jiory](https://github.com/jioryII).** This free, open-source NeoForge 1.21.1 interpretation is maintained by Achilleus with Jiory's permission.
 
 ## Demo
 
