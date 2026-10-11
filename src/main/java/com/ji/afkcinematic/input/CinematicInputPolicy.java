@@ -6,10 +6,6 @@ public final class CinematicInputPolicy {
     private CinematicInputPolicy() {
     }
 
-    public static boolean shouldProcessModShortcuts(boolean chatOpen, boolean cinematicActive, PersistentCinematicMode mode) {
-        return !chatOpen;
-    }
-
     public static boolean shouldRegisterActivity(boolean cinematicActive, PersistentCinematicMode mode, boolean chatOpen, Event event) {
         if (event == Event.ESCAPE) {
             return true;

@@ -23,6 +23,21 @@ public final class GameplayActivityMonitor {
 
     public static void init() {
         ClientEvents.onTick(GameplayActivityMonitor::tick);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(GameplayActivityMonitor::onKeyboardActivity);
+    }
+
+    private static void onKeyboardActivity(net.neoforged.neoforge.client.event.InputEvent.Key event) {
+        if (event.getAction() != org.lwjgl.glfw.GLFW.GLFW_PRESS) return;
+        Minecraft client = Minecraft.getInstance();
+        if (ModKeyMappings.matches(com.mojang.blaze3d.platform.InputConstants.getKey(event.getKey(), event.getScanCode()))) return;
+        boolean chatOpen = client.screen instanceof ChatScreen;
+        CinematicInputPolicy.Event activity = event.getKey() == org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE
+            ? CinematicInputPolicy.Event.ESCAPE
+            : (client.options.keyChat.matches(event.getKey(), event.getScanCode())
+                || client.options.keyCommand.matches(event.getKey(), event.getScanCode()))
+                ? CinematicInputPolicy.Event.CHAT_OPEN
+                : chatOpen ? CinematicInputPolicy.Event.CHAT_INPUT : CinematicInputPolicy.Event.GAMEPLAY_ACTION;
+        register(activity, chatOpen);
     }
 
     private static void tick(Minecraft client) {

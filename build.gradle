@@ -39,6 +39,9 @@ neoForge {
             systemProperty 'ji.afkcinematic.runtimeTest', 'true'
             systemProperty 'ji.afkcinematic.autoSmokeTest', 'true'
             systemProperty 'ji.afkcinematic.testLocalMusic', 'true'
+            if (project.hasProperty('testKeybindings')) {
+                systemProperty 'ji.afkcinematic.testKeybindings', 'true'
+            }
             systemProperty 'mixin.debug.verbose', 'true'
         }
     }

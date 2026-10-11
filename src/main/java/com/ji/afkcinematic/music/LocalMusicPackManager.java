@@ -101,7 +101,7 @@ public final class LocalMusicPackManager {
                     manifestTracks.add("ji_afk_cinematic_local:local." + (String)slug);
                 }
             }
-            Map<String, Map<String, Object>> packMeta = Map.of("pack", Map.of("pack_format", 34, "supported_formats", Map.of("min_inclusive", 34, "max_inclusive", 999), "description", "Aki AFK Cam Reforged local music"));
+            Map<String, Map<String, Object>> packMeta = Map.of("pack", Map.of("pack_format", 34, "supported_formats", Map.of("min_inclusive", 34, "max_inclusive", 999), "description", "Aki's AFK Cam Reforged local music"));
             Files.writeString(pack.resolve("pack.mcmeta"), (CharSequence)GSON.toJson(packMeta), StandardCharsets.UTF_8, new OpenOption[0]);
             Files.writeString(pack.resolve("assets").resolve(NAMESPACE).resolve("sounds.json"), (CharSequence)GSON.toJson(soundDefinitions), StandardCharsets.UTF_8, new OpenOption[0]);
             Path manifest = pack.resolve("assets").resolve(NAMESPACE).resolve("ji_afk_cinematic").resolve("music.json");
@@ -114,7 +114,6 @@ public final class LocalMusicPackManager {
                     client.options.resourcePacks.add(PACK_ID);
                 }
                 client.options.incompatibleResourcePacks.remove(PACK_ID);
-                client.options.save();
                 client.getResourcePackRepository().reload();
                 client.getResourcePackRepository().setSelected((Collection)client.options.resourcePacks);
                 CinematicMusicManager.onThirdPartyMusicReloaded();
